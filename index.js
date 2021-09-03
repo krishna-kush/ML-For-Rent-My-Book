@@ -4,15 +4,15 @@ const fs = require('fs');
 const multer = require('multer'); // for multer use the specified methods only, like in react...
 
 
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
-const ML = require('./models/form_model.js');
+// const ML = require('./models/form_model.js');
 
 
-mongoose.connect("mongodb+srv://main-PC:mymongodb.server@base.dmmx9.mongodb.net/Main?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+// mongoose.connect("mongodb+srv://main-PC:mymongodb.server@base.dmmx9.mongodb.net/Main?retryWrites=true&w=majority", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// })
 
 
 // // FOR IMAGE UPLOADATION USING MULTER
