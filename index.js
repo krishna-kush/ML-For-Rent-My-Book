@@ -1,7 +1,7 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const multer = require('multer'); // for multer use the specified methods only, like in react...
+// const path = require('path');
+// const fs = require('fs');
+// const multer = require('multer'); // for multer use the specified methods only, like in react...
 
 
 // const mongoose = require('mongoose')
