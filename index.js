@@ -73,57 +73,57 @@ server.get("/", (req, res) => {
     res.render("start.pug")
 })
 
-server.get("/upload", (req, res) => {
-    res.render("start.pug")
-})
-server.post("/upload", (req, res) => {
-    Upload(req, res, (err) => { // why only this format
-        console.log(req.file); // only can access res.file inside Upload(inside multer component) cuz express has no way to handle images of that I know...
+// server.get("/upload", (req, res) => {
+//     res.render("start.pug")
+// })
+// server.post("/upload", (req, res) => {
+//     Upload(req, res, (err) => { // why only this format
+//         console.log(req.file); // only can access res.file inside Upload(inside multer component) cuz express has no way to handle images of that I know...
 
-        const params = {
-            dest: req.file.path
-        }
+//         const params = {
+//             dest: req.file.path
+//         }
 
 
-        if (err) {
-            res.render("info.pug", params)
+//         if (err) {
+//             res.render("info.pug", params)
 
-        }else {
-            res.render("info.pug", params)
-        }
-    })
+//         }else {
+//             res.render("info.pug", params)
+//         }
+//     })
 
-})
-server.post("/finalise", async (req, res) => {
-    console.log(req.body);
+// })
+// server.post("/finalise", async (req, res) => {
+//     console.log(req.body);
     
-    let a = fs.readFileSync(req.body.dest)
-    let b = a.toString('base64')
+//     let a = fs.readFileSync(req.body.dest)
+//     let b = a.toString('base64')
     
-    let Record = (disc) => {
-        if (disc) {
-            return {
-                Client_Name: req.body.username,
-                Book_Name: req.body.book_name,
-                Price: req.body.price,
-                Book_Image: b,
-                Discription: disc,
-                Name_at_Server: req.body.dest.slice(19, req.body.dest.length-1)
-            }
-        }else {
-            return {
-                Client_Name: req.body.username,
-                Book_Name: req.body.book_name,
-                Price: req.body.price,
-                Book_Image: b,
-                Name_at_Server: req.body.dest.slice(19, req.body.dest.length-1)
-            }
-        }
-    }
+//     let Record = (disc) => {
+//         if (disc) {
+//             return {
+//                 Client_Name: req.body.username,
+//                 Book_Name: req.body.book_name,
+//                 Price: req.body.price,
+//                 Book_Image: b,
+//                 Discription: disc,
+//                 Name_at_Server: req.body.dest.slice(19, req.body.dest.length-1)
+//             }
+//         }else {
+//             return {
+//                 Client_Name: req.body.username,
+//                 Book_Name: req.body.book_name,
+//                 Price: req.body.price,
+//                 Book_Image: b,
+//                 Name_at_Server: req.body.dest.slice(19, req.body.dest.length-1)
+//             }
+//         }
+//     }
 
 
-    await ML.create(Record(req.body.disc))
-    console.log("done");
+//     await ML.create(Record(req.body.disc))
+//     console.log("done");
 
-    res.render("end.pug")
-})
+//     res.render("end.pug")
+// })
