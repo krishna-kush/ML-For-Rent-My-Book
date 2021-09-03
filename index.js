@@ -57,7 +57,7 @@ const multer = require('multer'); // for multer use the specified methods only, 
 const port = 80;
 
 const server = express();
-server.listen(port, hostname, () =>{
+server.listen(port, () =>{
     console.log(`Server running at ${port}/`);
 })
 
