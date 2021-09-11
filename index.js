@@ -57,14 +57,14 @@ const express = require('express');
 const port = 5000;
 
 const server = express();
+
+server.use(express.urlencoded())
+server.set('view engine', 'pug')
+
+
 server.listen(port, () =>{
     console.log(`Server running at ${port}/`);
 })
-
-
-server.use(express.urlencoded())
-
-server.set('view engine', 'pug')
 
 
 
