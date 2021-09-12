@@ -59,7 +59,7 @@ const port = 5000;
 const server = express();
 
 server.use(express.urlencoded())
-server.set('view engine', 'pug')
+server.set('view engine', 'hbs')
 
 
 server.listen(port, () =>{
@@ -70,7 +70,7 @@ server.listen(port, () =>{
 
 server.get("/", (req, res) => {
 //     res.sendFile(__dirname + "/views/home.html")
-    res.render("start.pug")
+    res.render("start.hbs", {hi: "hi"})
 })
 
 // server.get("/upload", (req, res) => {
