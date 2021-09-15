@@ -25,30 +25,30 @@ const storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)) // cd first argument is err -> seted to null
     }
 })
-// Check File Type -> Coppied from bradtraversy/nodeuploads
-const checkFileType = (file, cb) => {
-    // Allowed ext
-    const filetypes = /jpeg|jpg|png/;
-    // Check ext
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    // Check mime
-    const mimetype = filetypes.test(file.mimetype);
+// // Check File Type -> Coppied from bradtraversy/nodeuploads
+// const checkFileType = (file, cb) => {
+//     // Allowed ext
+//     const filetypes = /jpeg|jpg|png/;
+//     // Check ext
+//     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+//     // Check mime
+//     const mimetype = filetypes.test(file.mimetype);
   
-    if(mimetype && extname){
-        return cb(null,true);
-    } else {
-        cb('Error: Images Only!');
-    }
-}
+//     if(mimetype && extname){
+//         return cb(null,true);
+//     } else {
+//         cb('Error: Images Only!');
+//     }
+// }
 
 
 // init upload
 const Upload = multer({
     storage: storage,
-    limits: {fileSize: 10000000}, // 10 mb in bites (take in bites)
-    fileFilter: (req, file, cb) => {
-        checkFileType(file, cb)
-    }
+    limits: {fileSize: 10000000} // 10 mb in bites (take in bites)
+//     fileFilter: (req, file, cb) => {
+//         checkFileType(file, cb)
+//     }
 }).single('book_image') // single or multipple -> take filed name as parameter to upload/point given file
 
 
