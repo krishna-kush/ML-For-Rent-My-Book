@@ -29,14 +29,14 @@ server.get("/", (req, res) => {
 
 server.post("/finalise", async (req, res) => {
     // console.log(req.body);
-
+    
     let Record = (disc) => {
         if (disc) {
             return {
                 Client_Name: req.body.username,
                 Book_Name: req.body.book_name,
                 Price: req.body.price,
-                Book_Image: req.body.img,
+                Book_Image: req.body.img.slice(23, req.body.img.length), // "removed data:image/jpeg;base64," from start...
                 Discription: disc,
             }
         }else {
@@ -44,7 +44,7 @@ server.post("/finalise", async (req, res) => {
                 Client_Name: req.body.username,
                 Book_Name: req.body.book_name,
                 Price: req.body.price,
-                Book_Image: req.body.img,
+                Book_Image: req.body.img.slice(23, req.body.img.length),
             }
         }
     }
