@@ -1,52 +1,57 @@
-import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+const express = require('express');
+const path = require('path');
+
+const mongoose = require('mongoose')
+
+const ML = require('./models/form_model.js');
+
+mongoose.connect("mongodb+srv://main-PC:mymongodb.server@base.dmmx9.mongodb.net/Main?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
 
-export default () => {
-    const [img, setImg] = useState("")
+const port = 5000;
 
-    let ImgChanged = (event) => {
-        let img_file = event.target.files[0] // array of files uploaded...
-        console.log(img_file);
+const server = express();
+
+server.use(express.urlencoded())
+
+server.listen(port, () =>{
+    console.log(`Server running at ${port}/`);
+})
 
 
-        let ConvertImg = (file) => {
-            let reader = new FileReader()
+server.get("/", (req, res) => {
+    server.use(express.static(path.resolve(__dirname,'client','build')))
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+})
 
-            reader.readAsDataURL(file)
-            
-            reader.onload = () => {
-                setImg(reader.result)
+server.post("/finalise", async (req, res) => {
+    // console.log(req.body);
+
+    let Record = (disc) => {
+        if (disc) {
+            return {
+                Client_Name: req.body.username,
+                Book_Name: req.body.book_name,
+                Price: req.body.price,
+                Book_Image: req.body.img,
+                Discription: disc,
+            }
+        }else {
+            return {
+                Client_Name: req.body.username,
+                Book_Name: req.body.book_name,
+                Price: req.body.price,
+                Book_Image: req.body.img,
             }
         }
-
-        ConvertImg(img_file)
     }
 
 
-    return (
-        <div>
-            <div class="img">
-                <label>Book Image (Under 10mb): </label>
-                <input
-                type="file"
-                name="book_image"
-                onChange={ImgChanged}
-                required/>
+    await ML.create(Record(req.body.disc))
 
-                {/* <button onClick={() => {
-                    UpImg('book_image')
-                }}>Upload Img</button> */}
-            </div>
-            
-            <Link to={
-                {
-                    pathname: '/mid',
-                    state: img
-                }
-            }>
-                <button type="submit">Next</button>
-            </Link>
-        </div>
-    )
-}
+    res.send("DONE")
+
+})
