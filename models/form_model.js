@@ -6,7 +6,6 @@ const FormSchema = new mongoose.Schema({
 	Price: {type: Number, required: true},
 	Book_Image: {type: String, required: true},
 	Discription: {type: String, default: "No Discription"},
-	Name_at_Server: {type: String, required: true},
 	date: {
 		type: Number,
 		default: Date.now
