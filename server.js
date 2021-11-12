@@ -18,7 +18,10 @@ const port = 5000;
 
 const server = express();
 
-server.use(express.urlencoded())
+// server.use(express.urlencoded())
+
+server.use(express.json({limit: '50mb'}));
+server.use(express.urlencoded({limit: '50mb'}));
 
 server.listen(port, () =>{
     console.log(`Server running at ${port}/`);
