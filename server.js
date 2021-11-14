@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const cors = require('cors');
+
 
 // Mongoose Setup
 const mongoose = require('mongoose')
@@ -20,6 +22,8 @@ const server = express();
 
 // server.use(express.urlencoded())
 
+server.use(cors())
+
 server.use(express.json({limit: '50mb'}));
 server.use(express.urlencoded({limit: '50mb'}));
 
@@ -34,7 +38,7 @@ server.get("/", (req, res) => {
 })
 
 server.post("/finalise", async (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     
     let Record = (disc) => {
         if (disc) {
@@ -55,9 +59,13 @@ server.post("/finalise", async (req, res) => {
         }
     }
 
+    console.log(Record);
 
-    await ML.create(Record(req.body.disc))
+    try {
+        await ML.create(Record(req.body.disc))
+    } catch (error) {
+        res.send("ERROR")
+    }
 
     res.send("DONE")
-
 })
