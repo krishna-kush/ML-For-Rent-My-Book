@@ -1,0 +1,9 @@
+{
+    not remove "removed data:image/jpeg;base64," from start of book image...
+    from mongoose
+    but remove when revering into image
+}
+
+{
+    clear staged area
+}

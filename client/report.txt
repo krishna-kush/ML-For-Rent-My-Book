@@ -1,0 +1,8 @@
+{"scripts": {    
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+} in pakage.json previous, i changed it because of newer version of node v17.0.1. Check Here: https://stackoverflow.com/questions/69665222/node-17-0-1-causes-some-error-digital-envelope-routinesunsupported
+}
+
+
+{}
